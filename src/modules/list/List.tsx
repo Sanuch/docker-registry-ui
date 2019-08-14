@@ -1,3 +1,5 @@
-const List = {};
+import * as React from 'react';
 
-export default List;
+export default class List extends React.Component {
+
+}
