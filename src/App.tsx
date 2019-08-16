@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import List from './modules/list/List';
+import Page from './components/Page';
 
 const Fragment = React.Fragment;
 
@@ -11,7 +11,7 @@ const App: React.FC = () => {
       <Router>
         <Fragment>
           <Switch>
-            <Route exact path="/" component={List}/>
+            <Route exact path="/" component={Page}/>
           </Switch>
         </Fragment>
       </Router>

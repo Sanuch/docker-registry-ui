@@ -1,3 +1,5 @@
+const Dotenv = require('dotenv-webpack');
+
 module.exports = {
     mode: "production",
 
@@ -36,5 +38,9 @@ module.exports = {
     externals: {
         "react": "React",
         "react-dom": "ReactDOM"
-    }
+    },
+
+    plugins: [
+        new Dotenv()
+    ]
 };
