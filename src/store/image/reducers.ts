@@ -1,5 +1,5 @@
 import { actionTypes } from './actions';
-import {ImageReducerInterface, ImageTagResponseInterface, ImageTagListResponseInterface} from './interfaces';
+import {ImageReducerInterface, ImageTagResponseInterface } from './interfaces';
 
 const getInitialState = () => ({
     images: [],
@@ -14,8 +14,10 @@ const app = (state = getInitialState(), { type, payload }: ImageReducerInterface
                 ...payload,
             };
         case `${actionTypes.FETCH_TAGS}_SUCCESS`:
-            state.tags = [...state.tags, ...payload];
-            return state;
+            return {
+                ...state,
+                tags: [...state.tags, ...payload]
+            };
         default:
             return state;
     }

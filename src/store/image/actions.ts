@@ -22,7 +22,8 @@ const actions = {
                     dispatch(request.success({ images: images }));
                     dispatch(actions.fetchTags({ images: images }));
                 })
-                .catch(err => dispatch(request.failure(err)));
+                .catch(err => dispatch(request.failure(err)))
+                .finally( () =>  dispatch(request.done({})) );
         }
     ),
     fetchTags: buildRequestCreator(
@@ -39,7 +40,8 @@ const actions = {
                     );
                     dispatch(request.success(listOfData));
                 })
-                .catch(err => dispatch(request.failure(err)));
+                .catch(err => dispatch(request.failure(err)))
+                .finally( () =>  dispatch(request.done({})) );
         }
     ),
 };

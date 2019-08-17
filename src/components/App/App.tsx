@@ -23,13 +23,14 @@ export default class App extends React.Component<AppProps, AppStates> {
         const { images, tags } = this.props;
         const content = images.map(image => {
                 let listOfTags = tags.reduce(
-                    (list, tagList: ImageTagResponseInterface) => tagList.tags
-                        ? list + tagList.tags.join()
+                    (list, tagList: ImageTagResponseInterface) => tagList.name === image
+                        ? tagList.tags
+                            ? list + tagList.tags.sort().join(', ')
+                            : list
                         : list,
                     ''
                 );
-                console.log(listOfTags);
-                return (<li key={image}>{image}</li>);
+                return (<li key={image}>{image}: {listOfTags}</li>);
             });
         return (
             <div>
