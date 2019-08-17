@@ -6,7 +6,7 @@ const getInitialState = () => ({
     tags: [] as ImageTagResponseInterface[],
 });
 
-const images = (state = getInitialState(), { type, payload }: ImageReducerInterface) => {
+const app = (state = getInitialState(), { type, payload }: ImageReducerInterface) => {
     switch (type) {
         case `${actionTypes.FETCH_IMAGES}_SUCCESS`:
             return {
@@ -22,4 +22,4 @@ const images = (state = getInitialState(), { type, payload }: ImageReducerInterf
     }
 };
 
-export default images;
+export default app;
