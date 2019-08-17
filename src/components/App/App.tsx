@@ -21,9 +21,16 @@ export default class App extends React.Component<AppProps, AppStates> {
 
     render() {
         const { images, tags } = this.props;
-        console.log('images: ', images);
-        console.log('tags: ', tags);
-        const content = typeof images === 'undefined' ? '' : images.map(image => (<li key={image}>{image}</li>));
+        const content = images.map(image => {
+                let listOfTags = tags.reduce(
+                    (list, tagList: ImageTagResponseInterface) => tagList.tags
+                        ? list + tagList.tags.join()
+                        : list,
+                    ''
+                );
+                console.log(listOfTags);
+                return (<li key={image}>{image}</li>);
+            });
         return (
             <div>
                 <ul>{content}</ul>
