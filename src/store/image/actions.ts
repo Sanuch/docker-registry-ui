@@ -33,7 +33,11 @@ const actions = {
             return dockerClient
                 .getTags(images)
                 .then((data) => {
-                    dispatch(request.success(data));
+                    let listOfData = [...data].reduce(
+                        (rows: any, {data}) => { rows.push(data); return rows;},
+                        []
+                    );
+                    dispatch(request.success(listOfData));
                 })
                 .catch(err => dispatch(request.failure(err)));
         }

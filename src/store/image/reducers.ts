@@ -14,8 +14,7 @@ const app = (state = getInitialState(), { type, payload }: ImageReducerInterface
                 ...payload,
             };
         case `${actionTypes.FETCH_TAGS}_SUCCESS`:
-            const ar = [...payload];
-            ar.map(({data}: ImageTagListResponseInterface) =>  state.tags.push(data));
+            state.tags = [...state.tags, ...payload];
             return state;
         default:
             return state;
