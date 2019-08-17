@@ -2,15 +2,12 @@ import httpRequest from './ajax'
 
 const dockerClient = {
     getList: (filter: any) => {
-        return httpRequest.get('/_catalog')
-            // .then((response: any) => {
-            //     console.log(response.data.repositories);
-            // })
-            // .catch((error: any) => {
-            //     // handle error
-            //     console.log(error);
-            // })
-            ;
+        return httpRequest.get('/_catalog');
+    },
+
+    getTags: (names: Array<string>) => {
+        const tagsPromises = names.map(name => httpRequest.get(`/${name}/tags/list`));
+        return Promise.all(tagsPromises);
     },
 
     getImage: (image: any) => {},

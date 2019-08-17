@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/App/index';
+import configureStore from './store/index';
 import * as serviceWorker from './serviceWorker';
 
-import {createStore} from "redux";
 import {Provider} from 'react-redux';
 
-import allReducers from "./reducers";
-
-const dockerStore = createStore(allReducers);
+const store = configureStore({});
 
 
 // const result = require('dotenv').config();
@@ -17,7 +15,7 @@ const dockerStore = createStore(allReducers);
 // console.log(result);
 
 ReactDOM.render(
-    <Provider store={dockerStore} >
+    <Provider store={store} >
         <App />
     </Provider>,
     document.getElementById('root')
