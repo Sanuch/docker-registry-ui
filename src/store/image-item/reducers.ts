@@ -2,12 +2,13 @@ import { actionTypes } from './actions';
 import {ImageReducerInterface } from './interfaces';
 
 const getInitialState = () => ({
-    images: [],
+    tags: [],
+    name: '',
 });
 
-const app = (state = getInitialState(), { type, payload }: ImageReducerInterface) => {
+const item = (state = getInitialState(), { type, payload }: ImageReducerInterface) => {
     switch (type) {
-        case `${actionTypes.FETCH_IMAGES}_SUCCESS`:
+        case `${actionTypes.FETCH_IMAGE_TAGS}_SUCCESS`:
             return {
                 ...state,
                 ...payload,
@@ -17,4 +18,4 @@ const app = (state = getInitialState(), { type, payload }: ImageReducerInterface
     }
 };
 
-export default app;
+export default item;

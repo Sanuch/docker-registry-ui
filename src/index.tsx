@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/App/index';
+import App from './App';
 import configureStore from './store/index';
 import * as serviceWorker from './serviceWorker';
 
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 
-const store = configureStore({});
-
+const store = configureStore({app: {tags: [], images: []}});
 
 // const result = require('dotenv').config();
 
