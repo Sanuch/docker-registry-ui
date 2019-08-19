@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
 export const ListWrapper = styled.div`
-    display: table;
+    display: block;
     width: 100%;
 `;

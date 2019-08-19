@@ -1,9 +1,7 @@
 import * as React from "react";
 
-import { Link } from 'react-router-dom';
-
 import { ListItemProps, ListItemStates } from "./interfaces";
-import { ItemWrapper, ItemName, ItemTags, ItemLink } from "./styles";
+import { ItemWrapper, ItemName, ItemTags, ItemLink, ItemTagList, ItemTag } from "./styles";
 
 export default class ListItem extends React.Component<ListItemProps, ListItemStates> {
 
@@ -11,18 +9,21 @@ export default class ListItem extends React.Component<ListItemProps, ListItemSta
         this.setState({
             ...this.props
         });
-        // this.props.name && this.props.fetchTags(this.props.name);
     }
 
     render() {
         const { name, tags } = this.props;
-        let tagList = tags ? tags.sort().join(', ') : '';
+        const tagList = tags ? tags.sort() : [];
         return (
             <ItemWrapper>
                 <ItemLink href={`/${name}`}>
                     <ItemName>{name}</ItemName>
-                    <ItemTags>{tagList}</ItemTags>
                 </ItemLink>
+                <ItemTagList>
+                    <ItemTags>
+                        {tagList.map(tag => (<ItemTag key={tag}>{tag}</ItemTag>))}
+                    </ItemTags>
+                </ItemTagList>
             </ItemWrapper>
         );
     }
