@@ -14,7 +14,7 @@ export default class List extends React.Component<ListProps, ListStates> {
         const { images } = this.props;
         return (
             <ListWrapper>
-                {images.map((image, index) => (<ListItem key={index} name={image} />))}
+                {images.map((image: any, index: number) => (<ListItem key={index} name={image.name} tags={image.tags} />))}
             </ListWrapper>
         );
     }

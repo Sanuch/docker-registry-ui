@@ -3,12 +3,15 @@ import * as React from "react";
 import { Link } from 'react-router-dom';
 
 import { ListItemProps, ListItemStates } from "./interfaces";
-import { ItemWrapper, ItemName, ItemTags } from "./styles";
+import { ItemWrapper, ItemName, ItemTags, ItemLink } from "./styles";
 
 export default class ListItem extends React.Component<ListItemProps, ListItemStates> {
 
     componentDidMount() {
-        this.props.name && this.props.fetchTags(this.props.name);
+        this.setState({
+            ...this.props
+        });
+        // this.props.name && this.props.fetchTags(this.props.name);
     }
 
     render() {
@@ -16,10 +19,10 @@ export default class ListItem extends React.Component<ListItemProps, ListItemSta
         let tagList = tags ? tags.sort().join(', ') : '';
         return (
             <ItemWrapper>
-                <Link to={`/${name}`}>
+                <ItemLink href={`/${name}`}>
                     <ItemName>{name}</ItemName>
                     <ItemTags>{tagList}</ItemTags>
-                </Link>
+                </ItemLink>
             </ItemWrapper>
         );
     }

@@ -5,21 +5,27 @@ export const ItemWrapper = styled.div`
     margin-left: auto;
     margin-right: auto;
     height: 3em;
-    display: table-row;
+    display: block;
     cursor: pointer;
 `;
 
 export const ItemName = styled.span`
-    display: table-cell;
-    border: solid 2px black;
+    display: block;
     width: 50%;
 `;
 
 export const ItemTags = styled.span`
-    display: table-cell;
+    display: block;
     margin-left: 3em;
-    border: solid 2px red;
+    margin-top: 0.5em;
     width: 50%;
+`;
+
+export const ItemLink = styled.a`
+    width: 100%;
+    display: list-item;
+    margin-top: 1em;
+    list-style: none;
 `;
 
 export const ItemRemove = styled.span`

@@ -7,7 +7,7 @@ const getInitialState = () => ({
 
 const app = (state = getInitialState(), { type, payload }: ImageReducerInterface) => {
     switch (type) {
-        case `${actionTypes.FETCH_IMAGES}_SUCCESS`:
+        case `${actionTypes.FETCH_TAGS}_SUCCESS`:
             return {
                 ...state,
                 ...payload,

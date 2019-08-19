@@ -1,4 +1,4 @@
-import httpRequest from './ajax.dev'
+import httpRequest from './ajax.dev';
 
 const dockerClient = {
     getList: (filter: any) => {

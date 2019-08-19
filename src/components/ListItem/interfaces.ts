@@ -1,9 +1,10 @@
 
 export interface ListItemProps {
-    name: any,
-    tags?: [],
-    fetchTags: Function,
+    name: '',
+    tags: [],
+    // fetchTags: Function,
 }
 
 export interface ListItemStates {
+    // name: '',
 }
