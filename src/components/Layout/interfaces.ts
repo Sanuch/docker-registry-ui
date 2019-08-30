@@ -7,7 +7,7 @@ export interface LayoutItemInterface {
 
 }
 export interface LayoutProps {
-    layout: [],
+    layout: any,
 }
 
 export interface LayoutStates {

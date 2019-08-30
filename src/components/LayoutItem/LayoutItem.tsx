@@ -8,7 +8,7 @@ export default class LayoutItem extends React.Component<LayoutItemProps, LayoutI
         const { layout } = this.props;
         return (
             <ItemRow>
-                <ItemId>{layout.id}</ItemId>
+                <ItemId>{layout.id.slice(0, 8)}</ItemId>
                 <ItemCmd>{layout.container_config.Cmd.join(' ')}</ItemCmd>
             </ItemRow>
         );

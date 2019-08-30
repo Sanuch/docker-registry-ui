@@ -10,7 +10,7 @@ export interface ImageProps extends RouteComponentProps<RouteInfo> {
     fetchTags: Function,
     image: string,
     tags: Array<string>
-    layouts: [],
+    layouts: Array<any>,
 }
 
 export interface ImageStates {

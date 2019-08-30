@@ -7,7 +7,7 @@ interface LayoutReducer {
     layout: {
         tags: Array<string>,
         name: string,
-        layouts: [],
+        layouts: Array<any>,
     }
 }
 

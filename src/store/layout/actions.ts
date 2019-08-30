@@ -19,18 +19,16 @@ const actions = {
             return dockerClient
                 .getLayouts(name, tags)
                 .then((data) => {
-                    let listOfLayouts = data.reduce(
+                    const listOfLayouts = data.reduce(
                         (rows: any, {data}) => {
-                            return [...rows, data.history.map(
-                                ({v1Compatibility} : any) => JSON.parse(v1Compatibility)
-                            )];
+                            return [...rows, {
+                                tag: data.tag,
+                                rows: data.history.map(
+                                    ({v1Compatibility} : any) => JSON.parse(v1Compatibility)
+                                )
+                            }];
                         },
                         []
-                    );
-                    listOfLayouts.sort((a: any, b: any) =>
-                        (new Date(a.created)) > (new Date(b.created))
-                            ? 1
-                            : (new Date(a.created)) < (new Date(b.created)) ? -1 : 0
                     );
                     dispatch(request.success({layouts: listOfLayouts}));
                 })

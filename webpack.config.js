@@ -27,6 +27,14 @@ module.exports = {
                 enforce: "pre",
                 test: /\.js$/,
                 loader: "source-map-loader"
+            },
+
+            {
+                test: /\.(gif|eot|woff|woff2|ttf|svg)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'file-loader',
+                },
             }
         ]
     },

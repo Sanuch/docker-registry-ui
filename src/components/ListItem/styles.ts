@@ -33,7 +33,7 @@ export const ItemTags = styled.div`
 `;
 
 export const ItemLink = styled.a`
-    width: 100%;
+    width: calc(100% - 100px);
     display: list-item;
     margin-top: 1em;
     list-style: none;
@@ -69,5 +69,12 @@ export const ItemTag = styled.div`
     padding: 6px 10px;
 `;
 
-export const ItemRemove = styled.span`
+export const ItemActions = styled.span`
+    width: 50px;
+    display: inline;
+    list-style: none;
+    margin: 0;
+`;
+
+export const ActionRemove = styled.span`
 `;
