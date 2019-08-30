@@ -3,7 +3,7 @@ import * as React from "react";
 import { ImageProps, ImageStates } from "./interfaces";
 import { ImageContainer, ImageLayouts, ImageHeader, HeaderTags, HeaderTitle } from "./styles";
 import Layout from "components/Layout";
-import { merge } from "utils/layouts";
+import { merger, sorterByTags } from "utils/layouts";
 
 export default class Image extends React.Component<ImageProps, ImageStates> {
 
@@ -18,11 +18,12 @@ export default class Image extends React.Component<ImageProps, ImageStates> {
     }
 
     render() {
-        const { image, layouts } = this.props;
+        const { layouts, match: { params: image } } = this.props;
+        console.log(image);
         if (typeof layouts === 'undefined') {
             return (<div />);
         }
-        const mergeLayouts = merge(layouts);
+        const mergeLayouts = merger(layouts).sort(sorterByTags);
         console.log(mergeLayouts);
         return (
             <ImageContainer>

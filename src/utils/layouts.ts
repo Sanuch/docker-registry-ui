@@ -1,24 +1,48 @@
-export const sorter = (layouts: Array<any>) => {
+export const sorterById = (layouts: Array<any>) => {
     let result: Array<any> = [];
     let parent: any = layouts.find((item: any) => !item.hasOwnProperty('parent'));
     result.unshift(parent);
 
-    let child = layouts.find((item: any) => item.hasOwnProperty('parent')
-        && item.parent === parent.id
-    );
+    const searchElement = (parent: any) => (item: any) => item.hasOwnProperty('parent') && item.parent === parent.id;
+
+    let child = layouts.find(searchElement(parent));
+
     while (typeof child !== 'undefined') {
         result.unshift(child);
         parent = child;
 
-        child = layouts.find((item: any) => item.hasOwnProperty('parent')
-            && item.parent === parent.id
-        );
+        child = layouts.find(searchElement(parent));
     }
 
     return result;
 };
 
-export const merge = (layouts: Array<any>) => {
+// first: { tag: string, rows: Array<any> }
+// second: { tag: string, rows: Array<any> }
+export const sorterByTags = (first: any, second: any) => {
+    const parseTag = (tag: string) => {
+        if (tag.indexOf(',') !== -1) {
+            tag = tag.substr(0, tag.indexOf(','));
+        }
+        return tag;
+    };
+    const firstTag = parseTag(first.tag);
+    const secondTag = parseTag(second.tag);
+
+    if (firstTag === 'latest') {
+        return 1;
+    }
+    if (secondTag === 'latest') {
+        return 1;
+    }
+    const firstValue = parseInt(firstTag);
+    const secondValue = parseInt(secondTag);
+
+    // reverse sorting, last tag should be in top
+    return firstValue > secondValue ? -1 : (firstValue < secondValue ? 1 : 0);
+};
+
+export const merger = (layouts: Array<any>) => {
 
     if (typeof layouts === 'undefined') {
         return [];
@@ -38,9 +62,5 @@ export const merge = (layouts: Array<any>) => {
         []
     );
 
-    console.log(result);
-
-    console.log(result.reduce((carry: Array<any>, item: any) => carry.push(item), []));
-
-    return result.map((item: any) => item);
+    return Object.values(result);
 };

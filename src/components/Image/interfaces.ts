@@ -11,6 +11,7 @@ export interface ImageProps extends RouteComponentProps<RouteInfo> {
     image: string,
     tags: Array<string>
     layouts: Array<any>,
+    // match: any,
 }
 
 export interface ImageStates {
