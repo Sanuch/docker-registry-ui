@@ -32,9 +32,9 @@ export const ItemTags = styled.div`
     width: 50%;
 `;
 
-export const ItemLink = styled.a`
+export const ItemLink = styled.div`
     width: calc(100% - 100px);
-    display: list-item;
+    display: inline-block;
     margin-top: 1em;
     list-style: none;
     text-decoration: none;
@@ -59,6 +59,7 @@ export const ItemTagList = styled.div`
 
 export const ItemTag = styled.div`
     margin-right: 4px;
+    margin-bottom: 1vh;
     align-items: center;
     background-color: #f1f4f6;
     border-radius: 2px;
@@ -71,10 +72,21 @@ export const ItemTag = styled.div`
 
 export const ItemActions = styled.span`
     width: 50px;
-    display: inline;
+    display: inline-block;
     list-style: none;
     margin: 0;
 `;
 
 export const ActionRemove = styled.span`
+`;
+
+export const ImageLink = styled.style`
+    :hover {
+        color: grey;
+        text-decoration: none;
+    }
+    :visited {
+        color: grey;
+        text-decoration: none;
+    }
 `;

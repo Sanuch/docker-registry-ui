@@ -13,8 +13,11 @@ const App: React.FC = () => {
       <Router>
         <Fragment>
           <Switch>
-            <DefaultLayout path="/:image" /*render={(props: any) => <Image {...props.match.params}/>} */ component={Image} />
             <DefaultLayout exact path="/" component={Home} />
+            <DefaultLayout path="/:image" component={(matchedProps: any) => {
+                const { computedMatch: { params: props } } = matchedProps;
+                return (<Image {...props} />);
+            } } />
           </Switch>
         </Fragment>
       </Router>

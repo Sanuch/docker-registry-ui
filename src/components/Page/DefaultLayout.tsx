@@ -4,17 +4,13 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const DefaultLayout = (props: any) => {
-    const { Component, computedMatch: { params:  match }  , ...rest } = props;
-
-    const params = {...rest, ...match};
-
-    console.log(params);
+    const { component: Component, ...rest } = props;
 
     return (
-        <Route {...params} render={matchProps => (
+        <Route {...rest} render={() => (
             <div className="DefaultLayout">
                 <Header/>
-                <Component {...matchProps} />
+                <Component {...props} />
                 <Footer/>
             </div>
         )}/>

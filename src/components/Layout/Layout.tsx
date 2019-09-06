@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { LayoutProps, LayoutStates } from "./interfaces";
 import LayoutItem from "components/LayoutItem";
-import { LayoutWrapper, LayoutTag, LayoutContent } from './styles';
+import {LayoutWrapper, LayoutTag, LayoutContent, LayoutTagTitle, LayoutTagContent} from './styles';
 import { sorterById } from "utils/layouts";
 
 export default class Layout extends React.Component<LayoutProps, LayoutStates> {
@@ -15,7 +15,10 @@ export default class Layout extends React.Component<LayoutProps, LayoutStates> {
         });
         return (
             <LayoutWrapper>
-                <LayoutTag>{tag}</LayoutTag>
+                <LayoutTag>
+                    <LayoutTagTitle>Tags:</LayoutTagTitle>
+                    <LayoutTagContent>{tag}</LayoutTagContent>
+                </LayoutTag>
                 <LayoutContent>{content}</LayoutContent>
             </LayoutWrapper>
         );
