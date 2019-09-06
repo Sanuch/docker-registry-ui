@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Dispatch } from "redux";
-import Image from './Image';
+import ImageInfo from './ImageInfo';
 import actions from "store/layout/actions";
 
 interface LayoutReducer {
@@ -27,4 +27,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(Image);
+)(ImageInfo);

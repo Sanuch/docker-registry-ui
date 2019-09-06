@@ -1,10 +1,10 @@
 import * as React from "react";
 import { ListProps, ListStates } from "./interfaces";
-import ListItem from "components/ListItem";
+import ListItem from "components/ImageListItem";
 
 import { ListWrapper } from "./styles";
 
-export default class List extends React.Component<ListProps, ListStates> {
+export default class ImageList extends React.Component<ListProps, ListStates> {
 
     componentDidMount() {
         this.props.fetchImages();

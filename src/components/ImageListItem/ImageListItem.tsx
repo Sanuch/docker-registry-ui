@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { ListItemProps, ListItemStates } from "./interfaces";
 import { ItemWrapper, ItemName, ItemTags, ItemLink, ItemTagList, ItemTag, ItemActions, ActionRemove } from "./styles";
 
-export default class ListItem extends React.Component<ListItemProps, ListItemStates> {
+export default class ImageListItem extends React.Component<ListItemProps, ListItemStates> {
 
     componentDidMount() {
         this.setState({

@@ -5,7 +5,7 @@ import { ImageContainer, ImageLayouts, ImageHeader, HeaderTitle } from "./styles
 import Layout from "components/Layout";
 import { merger, sorterByTags } from "utils/layouts";
 
-export default class Image extends React.Component<ImageProps, ImageStates> {
+export default class ImageInfo extends React.Component<ImageProps, ImageStates> {
 
     componentDidMount() {
         this.props.fetchTags(this.props.image);

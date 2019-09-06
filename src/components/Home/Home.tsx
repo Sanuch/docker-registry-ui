@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { HomeStates, HomeProps} from "./interfaces";
-import List from "components/List";
+import ImageList from "components/ImageList";
 import { HomeWrapper, HomeFooter, ListContainer } from "./styles";
 
 export default class Home extends React.Component<HomeProps, HomeStates> {
@@ -10,7 +10,7 @@ export default class Home extends React.Component<HomeProps, HomeStates> {
         return (
             <HomeWrapper>
                 <ListContainer>
-                    <List />
+                    <ImageList />
                 </ListContainer>
                 <HomeFooter />
             </HomeWrapper>

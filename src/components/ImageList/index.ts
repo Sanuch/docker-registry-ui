@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import List from "./List";
+import ImageList from "./ImageList";
 import {Dispatch} from "redux";
 import actions from 'store/image/actions';
 
@@ -11,4 +11,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     fetchImages: () => dispatch(actions.fetchImages()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default connect(mapStateToProps, mapDispatchToProps)(ImageList);
