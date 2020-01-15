@@ -1,42 +1,34 @@
 import * as React from "react";
 import { Link } from 'react-router-dom';
 
-
-import { ListItemProps, ListItemStates } from "./interfaces";
+import { ListItemProps } from "./interfaces";
 import { ItemWrapper, ItemName, ItemTags, ItemLink, ItemTagList, ItemTag, ItemActions, ActionRemove } from "./styles";
 
-export default class ImageListItem extends React.Component<ListItemProps, ListItemStates> {
+const ImageListItem: React.FC<ListItemProps> = ({name, tags}: ListItemProps) => {
 
-    componentDidMount() {
-        this.setState({
-            ...this.props
-        });
-    }
+    const tagList = tags ? tags.sort((a, b) => a - b) : [];
 
-    removeItem(name: string) {
+    const removeItem = (name: string) => {
         console.log(name);
-    }
+    };
 
-    render() {
-        const { name, tags } = this.props;
-        const tagList = tags ? tags.sort((a, b) => a - b) : [];
-        return (
-            <ItemWrapper>
-                <ItemLink>
-                    <Link to={`/${name}`} >
-                        <ItemName>{name}</ItemName>
-                    </Link>
-                </ItemLink>
-                <ItemActions>
-                    <ActionRemove onClick={() => this.removeItem(name)}>Remove</ActionRemove>
-                </ItemActions>
-                <ItemTagList>
-                    <ItemTags>
-                        {tagList.map(tag => (<ItemTag key={tag}>{tag}</ItemTag>))}
-                    </ItemTags>
-                </ItemTagList>
-            </ItemWrapper>
-        );
-    }
+    return (
+        <ItemWrapper>
+            <ItemLink>
+                <Link to={`/${name}`} >
+                    <ItemName>{name}</ItemName>
+                </Link>
+            </ItemLink>
+            <ItemActions>
+                <ActionRemove onClick={() => removeItem(name)}>Remove</ActionRemove>
+            </ItemActions>
+            <ItemTagList>
+                <ItemTags>
+                    {tagList.map(tag => (<ItemTag key={tag}>{tag}</ItemTag>))}
+                </ItemTags>
+            </ItemTagList>
+        </ItemWrapper>
+    );
+};
 
-}
+export default ImageListItem;

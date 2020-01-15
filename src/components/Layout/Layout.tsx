@@ -1,26 +1,25 @@
 import * as React from "react";
 
-import { LayoutProps, LayoutStates } from "./interfaces";
+import { LayoutProps } from "./interfaces";
 import LayoutItem from "components/LayoutItem";
 import {LayoutWrapper, LayoutTag, LayoutContent, LayoutTagTitle, LayoutTagContent} from './styles';
 import { sorterById } from "utils/layouts";
 
-export default class Layout extends React.Component<LayoutProps, LayoutStates> {
-    render() {
-        const { layout } = this.props;
-        const { tag } = layout;
-        const layoutList = sorterById(layout.rows);
-        const content = layoutList.map((layout: any) => {
-            return (<LayoutItem key={layout.id} layout={layout} />);
-        });
-        return (
-            <LayoutWrapper>
-                <LayoutTag>
-                    <LayoutTagTitle>Tags:</LayoutTagTitle>
-                    <LayoutTagContent>{tag}</LayoutTagContent>
-                </LayoutTag>
-                <LayoutContent>{content}</LayoutContent>
-            </LayoutWrapper>
-        );
-    }
-}
+const Layout: React.FC<LayoutProps> = ({ layout }: LayoutProps) =>{
+    const { tag } = layout;
+    const layoutList = sorterById(layout.rows);
+    const content = layoutList.map((layout: any) => {
+        return (<LayoutItem key={layout.id} layout={layout} />);
+    });
+    return (
+        <LayoutWrapper>
+            <LayoutTag>
+                <LayoutTagTitle>Tags:</LayoutTagTitle>
+                <LayoutTagContent>{tag}</LayoutTagContent>
+            </LayoutTag>
+            <LayoutContent>{content}</LayoutContent>
+        </LayoutWrapper>
+    );
+};
+
+export default Layout;

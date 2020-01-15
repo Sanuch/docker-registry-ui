@@ -6,10 +6,10 @@ interface RouteInfo {
 }
 
 export interface ImageProps extends RouteComponentProps<RouteInfo> {
-    fetchLayouts: Function,
-    fetchTags: Function,
+    // fetchLayouts: Function,
+    // fetchTags: Function,
     image: string,
-    tags: Array<string>
+    // tags: Array<string>
     layouts: Array<any>,
     // match: any,
 }

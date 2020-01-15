@@ -50,7 +50,7 @@ const httpRequest = () => {
             const tag = list.pop();
             const name = list.pop();
             const history = registry.getLayouts(name, tag);
-            console.log(name, tag, history);
+            // console.log(name, tag, history);
 
             return [200, {"tag": tag, "history": history}];
         }
