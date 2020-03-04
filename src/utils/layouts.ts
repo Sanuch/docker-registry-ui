@@ -1,7 +1,7 @@
 
-export const sorterById = (layouts: Array<any>) => {
+export const sorterById = (layouts: any) => {
     console.log(layouts);
-    let result: Array<any> = [];
+    let result: any[] = [];
     let parent: any = layouts.find((item: any) => !item.hasOwnProperty('parent'));
     result.unshift(parent);
 
@@ -50,13 +50,13 @@ export const merger = (layouts: any[]) => {
         return [];
     }
 
-    const result = layouts.reduce(
+    const list = layouts.reduce(
         (carry: any[],  {tag, history}) => {
             history.forEach(({id, ...other}: any) => {
                 if (id in carry) {
                     carry[id].tag = carry[id].tag.concat(', ' + tag);
                 } else {
-                    carry[id] = { tag, rows: {id, ...other} };
+                    carry[id] = { tag, data: {id, ...other} };
                 }
             });
 
@@ -65,5 +65,16 @@ export const merger = (layouts: any[]) => {
         []
     );
 
-    return Object.values(result);
+    return Object.values(list).reduce(
+        (carry: any[],  {tag, data}) => {
+            if (tag in carry) {
+            } else {
+                carry[tag] = { tag, rows: [] };
+            }
+            carry[tag].rows.push(data);
+
+            return carry;
+        },
+        []
+    );
 };

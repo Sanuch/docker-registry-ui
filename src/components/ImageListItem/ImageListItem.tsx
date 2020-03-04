@@ -3,14 +3,26 @@ import { Link } from 'react-router-dom';
 
 import { ListItemProps } from "./interfaces";
 import { ItemWrapper, ItemName, ItemTags, ItemLink, ItemTagList, ItemTag, ItemActions, ActionRemove } from "./styles";
+import {useState} from "react";
+import Modal from "../Page/Modal";
 
 const ImageListItem: React.FC<ListItemProps> = ({name, tags}: ListItemProps) => {
 
     const tagList = tags ? tags.sort((a, b) => a - b) : [];
 
-    const removeItem = (name: string) => {
-        console.log(name);
-    };
+    const [modalWindow, setModalWindow] = useState(false);
+
+    const dialog = modalWindow
+        ? (
+            <Modal
+                onCancel={() => setModalWindow(false)}
+                onYes={() => console.log(name)}
+            >
+                Do you really want to remove image "<b>{name}</b>"?
+            </Modal>
+        )
+        : null
+    ;
 
     return (
         <ItemWrapper>
@@ -20,13 +32,14 @@ const ImageListItem: React.FC<ListItemProps> = ({name, tags}: ListItemProps) => 
                 </Link>
             </ItemLink>
             <ItemActions>
-                <ActionRemove onClick={() => removeItem(name)}>Remove</ActionRemove>
+                <ActionRemove onClick={() => setModalWindow(true)}>Remove</ActionRemove>
             </ItemActions>
             <ItemTagList>
                 <ItemTags>
                     {tagList.map(tag => (<ItemTag key={tag}>{tag}</ItemTag>))}
                 </ItemTags>
             </ItemTagList>
+            {dialog}
         </ItemWrapper>
     );
 };

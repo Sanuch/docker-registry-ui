@@ -14,6 +14,7 @@ const fetchLayouts = (image: string, setLayouts: (o: []) => void) => {
         .then(({ data }) => data)
         .then(({ tags }: any) => {
             tags = tags ? tags : [];
+            console.log(tags);
 
             dockerClient.getLayouts(image, tags)
                 .then(reposponse => {
@@ -45,7 +46,7 @@ const ImageInfo: React.FC<ImageProps> = ({ image }: ImageProps) => {
 
     useEffect(() => {
         fetchLayouts(image, setLayouts)
-    }, []);
+    }, [image]);
 
     if (layouts === []) {
         return (<div />);

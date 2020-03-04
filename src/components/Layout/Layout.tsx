@@ -7,6 +7,7 @@ import { sorterById } from "utils/layouts";
 
 const Layout: React.FC<LayoutProps> = ({ layout }: LayoutProps) =>{
     const { tag } = layout;
+    console.log(layout);
     const layoutList = sorterById(layout.rows);
     const content = layoutList.map((layout: any) => {
         return (<LayoutItem key={layout.id} layout={layout} />);
