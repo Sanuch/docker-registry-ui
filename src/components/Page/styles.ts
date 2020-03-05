@@ -24,13 +24,15 @@ export const ModalWrapper = styled.div`
     overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
+    cursor: default;
 `;
 
 export const ModalContent = styled.div`
     background-color: #fefefe;
-    margin: 0 auto 15% auto;
+    margin: 0 auto auto auto;
     padding: 20px;
-    border: 1px solid #888;
+    border-left: 1px solid #888;
+    border-right: 1px solid #888;
     width: 60%;
 `;
 
@@ -67,7 +69,14 @@ export const ModalTitle = styled.div`
 `;
 
 export const ModalActions = styled.div`
-    padding: 0.5rem 20rem;
+    width: 60%;
+    display: flex;
+    margin: 0 auto 15% auto;
+    padding: 10px 20px 8px 20px;
+    background-color: rgb(255,255,255);
+    border-left: 1px solid #888;
+    border-right: 1px solid #888;
+    border-bottom: 1px solid #888;
 `;
 
 export const ButtonYes = styled.span`
@@ -102,4 +111,5 @@ export const ButtonCancel = styled.span`
     padding:8px 19px;
     text-decoration:none;
     text-shadow:0px 1px 0px #7cacde;
+    margin-left: auto;
 `;

@@ -21,11 +21,11 @@ const Modal = ({onCancel, onYes, children}: any) => {
                 <ModalContentText>
                     {children}
                 </ModalContentText>
-                <ModalActions>
-                    <ButtonYes onClick={() => onYes()}>Yes</ButtonYes>
-                    <ButtonCancel onClick={() => onCancel()}>Cancel</ButtonCancel>
-                </ModalActions>
             </ModalContent>
+            <ModalActions>
+                <ButtonYes onClick={() => onYes()}>Yes</ButtonYes>
+                <ButtonCancel onClick={() => onCancel()}>Cancel</ButtonCancel>
+            </ModalActions>
         </ModalWrapper>
     )
 };
