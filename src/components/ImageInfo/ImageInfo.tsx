@@ -1,60 +1,27 @@
 import * as React from "react";
 
 import { ImageProps } from "./interfaces";
-import { ImageContainer, ImageLayouts, ImageHeader, HeaderTitle } from "./styles";
+import {ImageContainer, ImageLayouts, ImageHeader, HeaderTitle, Breadcrumbs} from "./styles";
 import Layout from "components/Layout";
 import { merger, sorterByTags } from "utils/layouts";
-import {useEffect, useState} from "react";
+import { useState } from "react";
 
-import dockerClient from "utils/docker";
-
-const fetchLayouts = (image: string, setLayouts: (o: []) => void) => {
-    dockerClient
-        .getImageTags(image)
-        .then(({ data }) => data)
-        .then(({ tags }: any) => {
-            tags = tags ? tags : [];
-            console.log(tags);
-
-            dockerClient.getLayouts(image, tags)
-                .then(reposponse => {
-                    const previousValue: any[] = [];
-                    const data = reposponse.reduce((previousValue, row ) => {
-                        const { data } = row;
-                        const history = data.history.reduce((c: any[], i: any) => {
-                            const d = JSON.parse(i.v1Compatibility);
-                            c.push(d);
-                            return c;
-                        }, []);
-                        previousValue.push({ history, tag: data.tag });
-                        return previousValue;
-                    }, previousValue) as [];
-                    setLayouts(data);
-                })
-            ;
-        })
-        .catch(console.error)
-        .finally( () =>  {} );
-};
-
-// const fetchLayouts = () => {
-//     dockerClient.getLayouts()
-// };
+import {Link} from "react-router-dom";
+import { fetchLayouts } from "./util";
 
 const ImageInfo: React.FC<ImageProps> = ({ image }: ImageProps) => {
     const [layouts, setLayouts] = useState([]);
 
-    useEffect(() => {
-        fetchLayouts(image, setLayouts)
-    }, [image]);
-
-    if (layouts === []) {
+    if (layouts.length === 0) {
+        fetchLayouts(image, setLayouts);
         return (<div />);
     }
-
     const mergeLayouts = merger(layouts).sort(sorterByTags);
     return (
         <ImageContainer>
+            <Breadcrumbs>
+                <Link to="/">Explorer</Link>
+            </Breadcrumbs>
             <ImageHeader>
                 <HeaderTitle>{image}</HeaderTitle>
             </ImageHeader>

@@ -14,3 +14,4 @@ export const LayoutTagTitle = styled.span`
 `;
 export const LayoutTagContent = styled.span``;
 export const LayoutContent = styled.div``;
+export const LayoutHeaderWrapper = styled.div``;

@@ -15,6 +15,7 @@ const actions = {
         actionTypes.FETCH_LAYOUTS,
         ({ request, payload, dispatch }: FetchImageActionParameters) => {
             const { name, tags } = payload;
+            debugger
             dispatch(request.request(payload));
             return dockerClient
                 .getLayouts(name, tags)

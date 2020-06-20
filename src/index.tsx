@@ -2,21 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import configureStore from './store/index';
 import * as serviceWorker from './serviceWorker';
+import {StoreContext} from './utils/context';
 
-import { Provider } from 'react-redux';
+const storage = (() => {
+    let images: Array<any> = [];
+    return {
+        addImage: (imageName: string) => {
+            images.push({name: imageName, tags: {}});
+        },
+    }
+})();
 
-const store = configureStore({app: {tags: [], images: []}});
-
-// const result = require('dotenv').config();
-
-// console.log(result);
+require('dotenv').config();
 
 ReactDOM.render(
-    <Provider store={store} >
+    <StoreContext.Provider value={storage} >
         <App />
-    </Provider>,
+    </StoreContext.Provider>,
     document.getElementById('root')
 );
 

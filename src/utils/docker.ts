@@ -1,4 +1,4 @@
-import httpRequest from './ajax.dev';
+import httpRequest from './ajax';
 
 const dockerClient = {
     getList: (filter: any) => {
@@ -17,7 +17,11 @@ const dockerClient = {
     getImage: (image: any) => {},
 
     getLayout: (image: string, tag: string) : Promise<any> => {
-        return httpRequest.get(`/${image}/manifests/${tag}`);
+        return httpRequest.get(`/${image}/manifests/${tag}`, {
+            headers: {
+                'Accept': 'application/vnd.docker.distribution.manifest.v2+json',
+            },
+        });
     },
 
     getLayouts: (image: string, tags: Array<string>) => {
@@ -25,9 +29,28 @@ const dockerClient = {
         return Promise.all(layoutsPromises);
     },
 
-    deleteVersion: (version: any) => {},
+    deleteImage: (image: string, reference: string) => {
+        return httpRequest.delete(
+            `/${image}/manifests/${reference}`,
+            {
+                headers: {
+                    'Accept': 'application/vnd.docker.distribution.manifest.v2+json',
+                },
+            }
+        );
+    },
 
-    deleteImage: (image: any) => {},
+    getManifestReference: (image: string, tag: string) => {
+        return httpRequest.head(
+            `/${image}/manifests/${tag}`,
+            {
+                method: 'head',
+                headers: {
+                    'Accept': 'application/vnd.docker.distribution.manifest.v2+json',
+                },
+            }
+        ).then((headers: any) => headers.get('docker-content-digest'));
+    },
 };
 
 export default dockerClient;

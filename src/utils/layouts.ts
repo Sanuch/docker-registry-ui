@@ -1,19 +1,24 @@
 
-export const sorterById = (layouts: any) => {
-    console.log(layouts);
+export const sorterById = (layouts: Array<any>) => {
     let result: any[] = [];
-    let parent: any = layouts.find((item: any) => !item.hasOwnProperty('parent'));
-    result.unshift(parent);
+    let parentElement: any = layouts.find((item: any) => !item.hasOwnProperty('parent'));
+    layouts = layouts.filter((item: any) => item.id !== parentElement.id);
+    result.unshift(parentElement);
 
-    const searchElement = (parent: any) => (item: any) => item.hasOwnProperty('parent') && item.parent === parent.id;
+    const searchElement = (parent: any) => {
+        return (item: any) => {
+            return item.hasOwnProperty('parent') && item.parent === parent.id;
+        };
+    };
 
-    let child = layouts.find(searchElement(parent));
+    let child = layouts.find(searchElement(parentElement));
 
     while (typeof child !== 'undefined') {
         result.unshift(child);
-        parent = child;
+        parentElement = child;
+        layouts = layouts.filter((item: any) => item.id !== parentElement.id);
 
-        child = layouts.find(searchElement(parent));
+        child = layouts.find(searchElement(parentElement));
     }
 
     return result;
@@ -51,7 +56,7 @@ export const merger = (layouts: any[]) => {
     }
 
     const list = layouts.reduce(
-        (carry: any[],  {tag, history}) => {
+        (carry: any,  {tag, history}) => {
             history.forEach(({id, ...other}: any) => {
                 if (id in carry) {
                     carry[id].tag = carry[id].tag.concat(', ' + tag);
@@ -59,14 +64,13 @@ export const merger = (layouts: any[]) => {
                     carry[id] = { tag, data: {id, ...other} };
                 }
             });
-
             return carry;
         },
-        []
+        {}
     );
 
-    return Object.values(list).reduce(
-        (carry: any[],  {tag, data}) => {
+    const result: any = Object.values(list).reduce(
+        (carry: any,  {tag, data}: any) => {
             if (tag in carry) {
             } else {
                 carry[tag] = { tag, rows: [] };
@@ -75,6 +79,7 @@ export const merger = (layouts: any[]) => {
 
             return carry;
         },
-        []
+        {}
     );
+    return Object.values(result);
 };

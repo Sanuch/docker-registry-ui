@@ -21,3 +21,8 @@ export const ImageContainer = styled.div`
     width: 100%;
     background-color: #F7F7F8;
 `;
+
+export const Breadcrumbs = styled.div`
+    display: block;
+    width: 80%;
+`;

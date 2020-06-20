@@ -17,7 +17,7 @@ const actions = {
             dispatch(request.request(payload));
             return dockerClient
                 .getImageTags(name)
-                .then(response => response.data)
+                .then(response => response)
                 .then(({tags}) => {
                     tags = tags ? tags : [];
                     dispatch(request.success({name: name, tags: tags ? tags : []}));

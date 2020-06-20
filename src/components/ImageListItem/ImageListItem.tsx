@@ -8,6 +8,8 @@ const ImageListItem: React.FC<ListItemProps> = ({name, tags, handleRemove}: List
 
     const tagList = tags ? tags.sort((a, b) => {
         if (a === 'latest') {
+            return 1;
+        } else if (b === 'latest') {
             return -1;
         }
         return a - b;
